@@ -2,19 +2,21 @@
 
 # Graph Database Resource Catalog
 
-### A curated, primary-source reference for 47 graph databases across RDF, property graph, multi-model, and specialized systems — with explicit vector-search classification.
+### The curated, primary-source reference for graph databases, RDF triple stores, property graph systems, and vector-capable graph engines.
+
+**A comprehensive comparison of 54 graph databases — Neo4j, Apache Jena, Stardog, ArangoDB, Memgraph, TigerGraph, Dgraph, Virtuoso, GraphDB, Amazon Neptune, Oracle Graph, Google Spanner Graph, and more — with explicit vector-search classification for every entry.**
 
 <p>
   <a href="#license"><img alt="License" src="https://img.shields.io/badge/License-MIT-34d399?style=for-the-badge"></a>
 </p>
 
 <p>
-  <img alt="Entries" src="https://img.shields.io/badge/Entries-47-60a5fa?style=flat-square">
-  <img alt="RDF" src="https://img.shields.io/badge/RDF-11-60a5fa?style=flat-square">
-  <img alt="LPG" src="https://img.shields.io/badge/LPG-18-fb923c?style=flat-square">
-  <img alt="Multi-model" src="https://img.shields.io/badge/Multi--model-13-22d3ee?style=flat-square">
-  <img alt="Specialized" src="https://img.shields.io/badge/Specialized-5-c084fc?style=flat-square">
-  <img alt="Native vector" src="https://img.shields.io/badge/Native%20vector-19-34d399?style=flat-square">
+  <img alt="Entries" src="https://img.shields.io/badge/Entries-54-60a5fa?style=flat-square">
+  <img alt="RDF" src="https://img.shields.io/badge/RDF-13-60a5fa?style=flat-square">
+  <img alt="LPG" src="https://img.shields.io/badge/LPG-19-fb923c?style=flat-square">
+  <img alt="Multi-model" src="https://img.shields.io/badge/Multi--model-15-22d3ee?style=flat-square">
+  <img alt="Specialized" src="https://img.shields.io/badge/Specialized-7-c084fc?style=flat-square">
+  <img alt="Native vector" src="https://img.shields.io/badge/Native%20vector-21-34d399?style=flat-square">
 </p>
 
 <p>
@@ -31,11 +33,17 @@
 
 ---
 
-## What this is
+## About
 
-A production-oriented reference that answers one question honestly: **which graph databases actually support vector search, and how?**
+The **Graph Database Resource Catalog** is a curated, primary-source reference for every graph database, RDF triple store, SPARQL engine, label property graph database, multi-model engine, and graph-plus-vector system worth considering for production use. It answers one question honestly:
 
-Every entry is anchored to primary sources (official product pages, documentation, or source repositories). The catalog distinguishes native vector support from connector-based, sibling-service, and paired-extension patterns. Where public docs are ambiguous, the entry is marked `unclear` instead of being inflated.
+> **Which graph databases actually support vector search, and how?**
+
+Every one of the 54 entries is anchored to official documentation, product pages, or source repositories. The catalog distinguishes native vector support from connector-based, paired-extension, and sibling-service patterns — and where the public docs are ambiguous, the entry is marked `unclear` instead of being inflated.
+
+**Topics covered:** graph database · RDF database · SPARQL · property graph · label property graph · LPG · knowledge graph · semantic graph · triple store · Cypher · Gremlin · GQL · SQL/PGQ · Datalog · vector search · HNSW · GraphRAG · multi-model database · graph analytics · graph OLTP · graph OLAP · knowledge graph engineering · semantic web
+
+**Databases in the catalog include:** Neo4j, Apache Jena, Fuseki, Virtuoso, Stardog, GraphDB, Amazon Neptune, RDFox, MarkLogic, Oxigraph, QLever, Blazegraph, TerminusDB, SurrealDB, ArangoDB, ArcadeDB, Memgraph, TigerGraph, Dgraph, JanusGraph, NebulaGraph, Apache HugeGraph, Apache AGE, OrientDB, TypeDB, Azure Cosmos DB for Gremlin, PuppyGraph, Kuzu, Ultipa, FalkorDB, Aerospike Graph, Tarantool Graph DB, TuGraph, AgensGraph, Fluree, RedisGraph, CozoDB, Oracle Graph, Google Spanner Graph, Gel (formerly EdgeDB), Datomic, HyperGraphDB, AnzoGraph DB, Weaviate, Cayley, DataStax Enterprise Graph, Eclipse RDF4J, AtomicServer, HelixDB, Dydra, and more.
 
 ## What makes it different
 
@@ -63,21 +71,21 @@ Every entry is anchored to primary sources (official product pages, documentatio
 
 **By model**
 
-- **11** RDF / SPARQL-native stores
-- **18** Label property graph databases
-- **13** Multi-model systems with a real graph layer
-- **5** Specialized graph-adjacent systems
+- **13** RDF / SPARQL-native stores
+- **19** Label property graph databases
+- **15** Multi-model systems with a real graph layer
+- **7** Specialized graph-adjacent systems
 
 </td>
 <td valign="top" width="50%">
 
 **By vector strategy**
 
-- **19** Native (in-engine)
+- **21** Native (in-engine)
 - **4** Integrated
 - **5** Paired
 - **2** Sibling-service
-- **14** None
+- **19** None
 - **3** Unclear
 
 </td>

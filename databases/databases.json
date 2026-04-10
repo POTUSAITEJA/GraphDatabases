@@ -1016,6 +1016,153 @@
         "https://www.cambridgesemantics.com/anzograph/"
       ],
       "notes": "AnzoGraph DB is the MPP SPARQL engine embedded inside the broader Anzo platform from Cambridge Semantics; also marketed as Altair Graph Studio after the Altair acquisition."
+    },
+    {
+      "id": "weaviate",
+      "name": "Weaviate",
+      "model": "specialized",
+      "status": "production",
+      "license": "BSD-3-Clause",
+      "license_type": "permissive",
+      "website": "https://weaviate.io",
+      "query_interfaces": ["GraphQL", "REST", "gRPC"],
+      "vector_strategy": "native",
+      "vector_summary": "Weaviate is a vector-first database with HNSW indexes and typed cross-references between objects that form a navigable knowledge graph.",
+      "ha": "Sharding and replication across cluster nodes",
+      "deployment": "Self-hosted, Docker, Kubernetes, or Weaviate Cloud",
+      "best_fit": "Vector-first knowledge graphs with GraphQL access and schema-defined cross-references",
+      "profile": "databases/weaviate/README.md",
+      "source_urls": [
+        "https://github.com/weaviate/weaviate",
+        "https://docs.weaviate.io/weaviate"
+      ],
+      "notes": "Primarily a vector database; the graph dimension comes from typed cross-references between objects rather than arbitrary edges. Catalogued as specialized because it is not a classical LPG or RDF engine."
+    },
+    {
+      "id": "cayley",
+      "name": "Cayley",
+      "model": "multi",
+      "status": "production",
+      "license": "Apache 2.0",
+      "license_type": "permissive",
+      "website": "https://cayley.io",
+      "query_interfaces": ["Gizmo (JavaScript DSL)", "GraphQL", "MQL"],
+      "vector_strategy": "none",
+      "vector_summary": "No native vector index; Cayley is a linked-data graph database inspired by the Google Knowledge Graph and Freebase with pluggable backend stores.",
+      "ha": "Depends on the chosen backend store",
+      "deployment": "Self-hosted with LevelDB, BoltDB, SQL, PostgreSQL, or MongoDB backends",
+      "best_fit": "Open-source linked-data projects that want a Go-native engine with multiple query languages and pluggable storage",
+      "profile": "databases/cayley/README.md",
+      "source_urls": [
+        "https://github.com/cayleygraph/cayley",
+        "https://cayley.io"
+      ],
+      "notes": "Google-origin project inspired by the Freebase / Knowledge Graph architecture. Maintained by the community under cayleygraph/cayley on GitHub."
+    },
+    {
+      "id": "dse-graph",
+      "name": "DataStax Enterprise Graph",
+      "model": "property",
+      "status": "production",
+      "license": "Commercial",
+      "license_type": "commercial",
+      "website": "https://www.datastax.com/products/datastax-graph",
+      "query_interfaces": ["Gremlin", "CQL"],
+      "vector_strategy": "none",
+      "vector_summary": "No vector capability is documented in the DSE Graph engine; vector features live in DataStax's separate Astra DB product line.",
+      "ha": "Cassandra-native multi-datacenter replication",
+      "deployment": "Self-hosted DataStax Enterprise cluster",
+      "best_fit": "Enterprise graph workloads backed by Apache Cassandra's distributed storage and linear scale-out",
+      "profile": "databases/dse-graph/README.md",
+      "source_urls": [
+        "https://docs.datastax.com/en/dse/6.9/graph/graph-contents.html",
+        "https://www.datastax.com/products/datastax-graph"
+      ],
+      "notes": "Built on top of Apache Cassandra inside DataStax Enterprise. Classic DSE Graph and the newer DataStax Graph engine share the same product surface from DSE 6.8 onward."
+    },
+    {
+      "id": "rdf4j",
+      "name": "Eclipse RDF4J",
+      "model": "rdf",
+      "status": "production",
+      "license": "EDL 1.0 / EPL 2.0",
+      "license_type": "permissive",
+      "website": "https://rdf4j.org",
+      "query_interfaces": ["SPARQL 1.1", "SeRQL"],
+      "vector_strategy": "none",
+      "vector_summary": "No native vector index; RDF4J is a Java framework whose bundled Native Store and Memory Store provide embeddable SPARQL 1.1 endpoints.",
+      "ha": "Single-node stores; clustering depends on the SAIL backend",
+      "deployment": "Embedded Java library, standalone RDF4J Server, or Workbench",
+      "best_fit": "Java applications that need an embeddable SPARQL 1.1 store or a framework for building one",
+      "profile": "databases/rdf4j/README.md",
+      "source_urls": [
+        "https://rdf4j.org/about/",
+        "https://projects.eclipse.org/projects/technology.rdf4j"
+      ],
+      "notes": "Formerly known as OpenRDF Sesame. Ships both an on-disk (Native Store) and in-memory (Memory Store) SAIL implementation, plus a pluggable SAIL architecture for third-party backends."
+    },
+    {
+      "id": "atomic-server",
+      "name": "AtomicServer",
+      "model": "specialized",
+      "status": "emerging",
+      "license": "MIT",
+      "license_type": "permissive",
+      "website": "https://atomicserver.eu",
+      "query_interfaces": ["REST", "Atomic queries"],
+      "vector_strategy": "none",
+      "vector_summary": "No native vector index; AtomicServer is the reference implementation of the Atomic Data specification, a type-safe, RDF-inspired, JSON-compatible graph data model.",
+      "ha": "Single-node (sled-backed storage)",
+      "deployment": "Self-hosted, single binary",
+      "best_fit": "Headless CMS and real-time collaborative data apps that want a type-safe, RDF-inspired graph model",
+      "profile": "databases/atomic-server/README.md",
+      "source_urls": [
+        "https://docs.atomicdata.dev/",
+        "https://github.com/atomicdata-dev/atomic-server"
+      ],
+      "notes": "Reference implementation of the Atomic Data specification. The underlying data model combines RDF-style links with JSON ergonomics and runtime type safety."
+    },
+    {
+      "id": "helixdb",
+      "name": "HelixDB",
+      "model": "multi",
+      "status": "emerging",
+      "license": "AGPL-3.0",
+      "license_type": "copyleft",
+      "website": "https://www.helix-db.com",
+      "query_interfaces": ["HelixQL"],
+      "vector_strategy": "native",
+      "vector_summary": "HelixDB is a Rust-native graph-vector database that ships both graph traversal and vector search as first-class primitives inside HelixQL, its strongly-typed compiled query language.",
+      "ha": "Single-node (LMDB-backed storage)",
+      "deployment": "Self-hosted; managed service available for selected users",
+      "best_fit": "RAG and AI applications that need graph traversal and vector search in a single typed query surface",
+      "profile": "databases/helixdb/README.md",
+      "source_urls": [
+        "https://github.com/HelixDB/helix-db",
+        "https://www.helix-db.com"
+      ],
+      "notes": "Rust implementation with LMDB storage. AGPL-3.0 has implications for SaaS distribution; review the license before embedding in commercial services."
+    },
+    {
+      "id": "dydra",
+      "name": "Dydra",
+      "model": "rdf",
+      "status": "production",
+      "license": "Commercial",
+      "license_type": "commercial",
+      "website": "https://dydra.com",
+      "query_interfaces": ["SPARQL 1.1", "GraphQL", "Linked Data Platform"],
+      "vector_strategy": "none",
+      "vector_summary": "No native vector index is documented; Dydra is a versioned cloud RDF store with first-class temporal snapshots and SPARQL 1.1 support.",
+      "ha": "Managed cloud (recent work integrates the RonDB distributed backend)",
+      "deployment": "Managed cloud service operated by Datagraph",
+      "best_fit": "Cloud-native RDF applications that need versioned, time-travelable SPARQL stores",
+      "profile": "databases/dydra/README.md",
+      "source_urls": [
+        "https://docs.dydra.com/dydra",
+        "https://docs.dydra.com/sparql"
+      ],
+      "notes": "A 'Git for graphs' approach — every store state is fully addressable via a REVISION argument in SPARQL. Recent work with Hopsworks/RonDB targets trillion-triple scale."
     }
   ]
 }

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://potusaiteja.github.io/GraphDatabases/sitemap.xml
