@@ -53,7 +53,7 @@ Keep the active benchmark focused on graph systems that matter for production ev
 - RDF stores
 - property graph databases
 - multi-model graph platforms
-- specialized graph-adjacent engines when they are common comparison targets
+- specialized graph-adjacent engines that are commonly evaluated alongside graph databases
 
 Avoid inflating scope with:
 

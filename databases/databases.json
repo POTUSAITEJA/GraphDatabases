@@ -636,7 +636,7 @@
         "https://typedb.com/docs/home/get-started/overview",
         "https://github.com/typedb/typedb"
       ],
-      "notes": "Included as a specialized comparison point, not as a standard LPG."
+      "notes": "Included as a specialized reference point, not as a standard LPG."
     },
     {
       "id": "cosmos-gremlin",

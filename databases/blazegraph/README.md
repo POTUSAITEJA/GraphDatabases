@@ -29,7 +29,7 @@ No native vector search is documented. Blazegraph has no vector index capability
 
 - Legacy migration planning for teams running existing Blazegraph deployments
 - Historical reference for understanding the Wikidata Query Service architecture
-- Comparison baseline when evaluating replacement RDF stores (QLever, Jena, Virtuoso)
+- Baseline reference when evaluating replacement RDF stores (QLever, Jena, Virtuoso)
 
 ## Considerations
 

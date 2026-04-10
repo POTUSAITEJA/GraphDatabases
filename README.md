@@ -4,7 +4,7 @@
 
 ### The curated, primary-source reference for graph databases, RDF triple stores, property graph systems, and vector-capable graph engines.
 
-**A comprehensive comparison of 54 graph databases — Neo4j, Apache Jena, Stardog, ArangoDB, Memgraph, TigerGraph, Dgraph, Virtuoso, GraphDB, Amazon Neptune, Oracle Graph, Google Spanner Graph, and more — with explicit vector-search classification for every entry.**
+**A curated reference covering 54 graph databases — Neo4j, Apache Jena, Stardog, ArangoDB, Memgraph, TigerGraph, Dgraph, Virtuoso, GraphDB, Amazon Neptune, Oracle Graph, Google Spanner Graph, and more — with explicit vector-search classification for every entry.**
 
 <p>
   <a href="#license"><img alt="License" src="https://img.shields.io/badge/License-MIT-34d399?style=for-the-badge"></a>

@@ -1,6 +1,6 @@
 # TypeDB
 
-> Strongly typed knowledge engine with a polymorphic type system and built-in reasoning, included as a specialized comparison point alongside standard graph databases.
+> Strongly typed knowledge engine with a polymorphic type system and built-in reasoning, catalogued as a specialized reference alongside standard graph databases.
 
 | | |
 |---|---|
