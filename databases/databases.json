@@ -1163,6 +1163,342 @@
         "https://docs.dydra.com/sparql"
       ],
       "notes": "A 'Git for graphs' approach — every store state is fully addressable via a REVISION argument in SPARQL. Recent work with Hopsworks/RonDB targets trillion-triple scale."
+    },
+    {
+      "id": "alibaba-gdb",
+      "name": "Alibaba Cloud Graph Database",
+      "model": "property",
+      "status": "production",
+      "license": "Commercial",
+      "license_type": "commercial",
+      "website": "https://www.alibabacloud.com/product/graph-database",
+      "query_interfaces": ["Gremlin", "openCypher"],
+      "vector_strategy": "none",
+      "vector_summary": "No native vector capability is documented in the GDB engine; vector workloads live in Alibaba Cloud's separate Lindorm and AnalyticDB product lines.",
+      "ha": "Managed multi-AZ deployment",
+      "deployment": "Alibaba Cloud managed service",
+      "best_fit": "Alibaba Cloud workloads that need a real-time property graph with TinkerPop-compatible tooling",
+      "profile": "databases/alibaba-gdb/README.md",
+      "source_urls": [
+        "https://www.alibabacloud.com/help/product/102714.htm",
+        "https://www.alibabacloud.com/product/graph-database"
+      ],
+      "notes": "Alibaba Cloud's managed property graph. Supports the Apache TinkerPop Gremlin query language as the primary surface; listed as an official TinkerPop provider."
+    },
+    {
+      "id": "ibm-db2-graph",
+      "name": "IBM Db2 Graph",
+      "model": "multi",
+      "status": "production",
+      "license": "Commercial",
+      "license_type": "commercial",
+      "website": "https://www.ibm.com/docs/en/db2/11.5?topic=da-db2-graph",
+      "query_interfaces": ["Gremlin"],
+      "vector_strategy": "none",
+      "vector_summary": "No native vector index in the graph layer; Db2 Graph is a virtual graph overlay on Db2 relational tables with no documented vector integration.",
+      "ha": "Db2-native HADR and pureScale",
+      "deployment": "Included with IBM Db2 (self-hosted or Cloud Pak for Data)",
+      "best_fit": "Organizations already on IBM Db2 that want a virtual property graph over existing relational data without a separate engine",
+      "profile": "databases/ibm-db2-graph/README.md",
+      "source_urls": [
+        "https://www.ibm.com/docs/en/db2/11.5?topic=da-db2-graph",
+        "https://www.ibm.com/docs/en/cloud-paks/cp-data/4.0?topic=applications-db2-graph"
+      ],
+      "notes": "Db2 Graph transforms Gremlin queries into SQL against a Db2 database via a Graph overlay file that maps rows to vertices and edges. Listed as an official Apache TinkerPop provider."
+    },
+    {
+      "id": "huawei-ges",
+      "name": "Huawei Graph Engine Service",
+      "model": "property",
+      "status": "production",
+      "license": "Commercial",
+      "license_type": "commercial",
+      "website": "https://www.huaweicloud.com/intl/en-us/product/ges.html",
+      "query_interfaces": ["Gremlin", "Cypher"],
+      "vector_strategy": "none",
+      "vector_summary": "No native vector index is documented in GES; Huawei Cloud exposes vector search through separate services rather than inside the graph engine.",
+      "ha": "Managed distributed cluster",
+      "deployment": "Huawei Cloud managed service",
+      "best_fit": "Huawei Cloud workloads that need a fully managed distributed property graph at tens of billions of vertices",
+      "profile": "databases/huawei-ges/README.md",
+      "source_urls": [
+        "https://support.huaweicloud.com/intl/en-us/productdesc-ges/ges_04_0001.html",
+        "https://www.huaweicloud.com/intl/en-us/product/ges.html"
+      ],
+      "notes": "Backed by Huawei's in-house EYWA graph kernel. Supports Apache TinkerPop Gremlin 3.4 and a Cypher surface. Listed as an official Apache TinkerPop provider."
+    },
+    {
+      "id": "ongdb",
+      "name": "ONgDB",
+      "model": "property",
+      "status": "production",
+      "license": "GPL-3.0 / AGPL-3.0",
+      "license_type": "copyleft",
+      "website": "https://graphfoundation.org/ongdb/",
+      "query_interfaces": ["Cypher"],
+      "vector_strategy": "none",
+      "vector_summary": "No native vector index is documented; ONgDB is a community fork of Neo4j Enterprise 3.4 that predates the HNSW vector work in upstream Neo4j.",
+      "ha": "Causal clustering (inherited from Neo4j Enterprise 3.4)",
+      "deployment": "Self-hosted",
+      "best_fit": "Teams that want a fully open-source continuation of Neo4j Enterprise without the open-core split",
+      "profile": "databases/ongdb/README.md",
+      "source_urls": [
+        "https://github.com/graphfoundation/ongdb",
+        "https://graphfoundation.org/ongdb/"
+      ],
+      "notes": "ONgDB (Open Native Graph Database) is an independent fork of Neo4j Enterprise Edition 3.4 maintained by the Graph Foundation. Community distributions are GPL-3.0 and Enterprise distributions are AGPL-3.0. Not affiliated with Neo4j, Inc."
+    },
+    {
+      "id": "ontop",
+      "name": "Ontop",
+      "model": "rdf",
+      "status": "production",
+      "license": "Apache 2.0",
+      "license_type": "permissive",
+      "website": "https://ontop-vkg.org",
+      "query_interfaces": ["SPARQL 1.1"],
+      "vector_strategy": "none",
+      "vector_summary": "No native vector index; Ontop is a virtual knowledge graph system that translates SPARQL into SQL on top of a relational database.",
+      "ha": "Inherits availability from the backing relational database",
+      "deployment": "Self-hosted SPARQL endpoint over an existing relational database",
+      "best_fit": "Organizations that want to expose an existing relational database as a virtual RDF knowledge graph without materializing triples",
+      "profile": "databases/ontop/README.md",
+      "source_urls": [
+        "https://github.com/ontop/ontop",
+        "https://ontop-vkg.org/guide/"
+      ],
+      "notes": "Implements the Ontology-Based Data Access (OBDA) pattern. Uses R2RML or Ontop's native OBDA mappings to translate SPARQL queries into SQL at runtime, so data stays in the source relational store."
+    },
+    {
+      "id": "marmotta",
+      "name": "Apache Marmotta",
+      "model": "rdf",
+      "status": "legacy",
+      "license": "Apache 2.0",
+      "license_type": "permissive",
+      "website": "https://marmotta.apache.org",
+      "query_interfaces": ["SPARQL 1.1", "Linked Data Platform"],
+      "vector_strategy": "none",
+      "vector_summary": "No vector capability; Apache Marmotta was retired to the Apache Attic in November 2020 and is no longer actively maintained.",
+      "ha": "None",
+      "deployment": "Self-hosted Java web application",
+      "best_fit": "Historical reference for W3C Linked Data Platform deployments",
+      "profile": "databases/marmotta/README.md",
+      "source_urls": [
+        "https://marmotta.apache.org",
+        "https://en.wikipedia.org/wiki/Apache_Marmotta"
+      ],
+      "notes": "Retired to the Apache Attic in November 2020. Included as a historical reference for the W3C Linked Data Platform recommendation it helped implement."
+    },
+    {
+      "id": "relationalai",
+      "name": "RelationalAI",
+      "model": "specialized",
+      "status": "production",
+      "license": "Commercial",
+      "license_type": "commercial",
+      "website": "https://relational.ai",
+      "query_interfaces": ["Rel (Datalog-based)"],
+      "vector_strategy": "unclear",
+      "vector_summary": "Rel is a declarative relational-knowledge-graph language; current public documentation does not expose a clear general-purpose vector index surface.",
+      "ha": "Snowflake-native managed service",
+      "deployment": "Managed co-processor on Snowflake (Snowflake Marketplace)",
+      "best_fit": "Enterprises on Snowflake that want a declarative relational knowledge graph layer with Datalog-style recursion",
+      "profile": "databases/relationalai/README.md",
+      "source_urls": [
+        "https://www.relational.ai/",
+        "https://docs.relational.ai/rel/concepts/relational-knowledge-graphs"
+      ],
+      "notes": "Ships a relational knowledge graph management system built around Rel, a Datalog-inspired query language. Available as a co-processor to Snowflake through the Snowflake Marketplace."
+    },
+    {
+      "id": "raphtory",
+      "name": "Raphtory",
+      "model": "specialized",
+      "status": "emerging",
+      "license": "GPL-3.0",
+      "license_type": "copyleft",
+      "website": "https://www.pometry.com",
+      "query_interfaces": ["Python API", "GraphQL"],
+      "vector_strategy": "none",
+      "vector_summary": "No general-purpose vector index; Raphtory focuses on temporal analytics with time-travel, multilayer modelling, and motif detection rather than similarity search.",
+      "ha": "Single-node embedded or server (out-of-memory scaling via subscription)",
+      "deployment": "Embedded Rust/Python library or standalone GraphQL server",
+      "best_fit": "Temporal graph analytics workloads that need time-travel, multilayer modelling, and dynamic scoring",
+      "profile": "databases/raphtory/README.md",
+      "source_urls": [
+        "https://github.com/Pometry/Raphtory",
+        "https://docs.pometry.com/"
+      ],
+      "notes": "Developed by Pometry. In-memory vectorized temporal graph engine written in Rust with Python bindings. A managed on-disk scaling path is available under subscription."
+    },
+    {
+      "id": "katana-graph",
+      "name": "Katana Graph",
+      "model": "property",
+      "status": "production",
+      "license": "Commercial",
+      "license_type": "commercial",
+      "website": "https://katanagraph.ai",
+      "query_interfaces": ["Cypher", "Gremlin", "SPARQL", "Python API"],
+      "vector_strategy": "unclear",
+      "vector_summary": "Public documentation emphasizes graph analytics and ML pipelines; a general-purpose vector index is not clearly exposed in public materials.",
+      "ha": "Distributed cluster across x86, Optane, GPU nodes",
+      "deployment": "Self-hosted on clusters, Intel Optane, or multi-GPU systems",
+      "best_fit": "High-performance distributed graph analytics on very large graphs with heterogeneous hardware",
+      "profile": "databases/katana-graph/README.md",
+      "source_urls": [
+        "https://katanagraph.ai/",
+        "https://katanagraph.ai/why-katana"
+      ],
+      "notes": "Founded in 2020 by researchers from the University of Texas at Austin. Targets large-scale graph intelligence workloads in security, finance, and healthcare; backed by Intel Capital."
+    },
+    {
+      "id": "trovares-xgt",
+      "name": "Trovares xGT (Rocketgraph)",
+      "model": "property",
+      "status": "production",
+      "license": "Commercial",
+      "license_type": "commercial",
+      "website": "https://rocketgraph.com",
+      "query_interfaces": ["Python API", "openCypher"],
+      "vector_strategy": "none",
+      "vector_summary": "No native vector index is documented; xGT is a high-performance in-memory property graph engine focused on analytic query throughput.",
+      "ha": "Single-user in-memory engine",
+      "deployment": "Self-hosted on large-memory servers",
+      "best_fit": "Single-user analytic graph workloads on very large in-memory graphs",
+      "profile": "databases/trovares-xgt/README.md",
+      "source_urls": [
+        "https://docs.trovares.com/",
+        "https://rocketgraph.com/"
+      ],
+      "notes": "Developed by Trovares (now branded Rocketgraph). Founded in 2014 to commercialize parallel graph work from the US Department of Defense and Pacific Northwest National Laboratory."
+    },
+    {
+      "id": "s2graph",
+      "name": "Apache S2Graph",
+      "model": "property",
+      "status": "legacy",
+      "license": "Apache 2.0",
+      "license_type": "permissive",
+      "website": "https://s2graph.apache.org",
+      "query_interfaces": ["Gremlin", "REST"],
+      "vector_strategy": "none",
+      "vector_summary": "No native vector index; S2Graph is a TinkerPop-compatible OLTP graph layer on top of Apache HBase.",
+      "ha": "Inherits HBase distribution and replication",
+      "deployment": "Self-hosted on an Apache HBase cluster",
+      "best_fit": "Organizations already running HBase that need a TinkerPop-compatible graph layer",
+      "profile": "databases/s2graph/README.md",
+      "source_urls": [
+        "https://s2graph.apache.org",
+        "https://github.com/apache/incubator-s2graph"
+      ],
+      "notes": "Still in Apache Incubation; community activity has been light. Listed as an official Apache TinkerPop provider."
+    },
+    {
+      "id": "poolparty",
+      "name": "PoolParty Semantic Suite",
+      "model": "rdf",
+      "status": "production",
+      "license": "Commercial",
+      "license_type": "commercial",
+      "website": "https://www.poolparty.biz",
+      "query_interfaces": ["SPARQL 1.1", "SKOS", "REST"],
+      "vector_strategy": "none",
+      "vector_summary": "No native vector index is exposed at the store level; PoolParty focuses on SKOS thesaurus management and semantic search over an RDF graph store.",
+      "ha": "Deployment-dependent",
+      "deployment": "Self-hosted or private cloud suite",
+      "best_fit": "Enterprise taxonomy, controlled vocabulary, and semantic search over W3C standards",
+      "profile": "databases/poolparty/README.md",
+      "source_urls": [
+        "https://www.poolparty.biz/semantic-integrator",
+        "https://en.wikipedia.org/wiki/PoolParty_Semantic_Suite"
+      ],
+      "notes": "Developed by the Semantic Web Company in Vienna. Built around SKOS and SKOS-XL for enterprise taxonomies, ontologies, and knowledge graphs."
+    },
+    {
+      "id": "topbraid-edg",
+      "name": "TopBraid EDG",
+      "model": "rdf",
+      "status": "production",
+      "license": "Commercial",
+      "license_type": "commercial",
+      "website": "https://www.topquadrant.com/topbraid-edg/",
+      "query_interfaces": ["SPARQL", "SHACL", "GraphQL"],
+      "vector_strategy": "none",
+      "vector_summary": "No native vector index is exposed; TopBraid EDG focuses on RDF knowledge graphs, SHACL validation, and SPARQL or GraphQL access to governed data.",
+      "ha": "Deployment-dependent",
+      "deployment": "Self-hosted or private cloud",
+      "best_fit": "Enterprise data governance, business glossary, and reference data management backed by an RDF knowledge graph",
+      "profile": "databases/topbraid-edg/README.md",
+      "source_urls": [
+        "https://www.topquadrant.com/topbraid-edg/",
+        "https://www.topquadrant.com/doc/latest/introduction/index.html"
+      ],
+      "notes": "TopBraid Enterprise Data Governance (EDG) is TopQuadrant's flagship platform. Uses SHACL alongside SPARQL and GraphQL for governed knowledge graph applications."
+    },
+    {
+      "id": "indradb",
+      "name": "IndraDB",
+      "model": "property",
+      "status": "production",
+      "license": "MPL-2.0",
+      "license_type": "permissive",
+      "website": "https://indradb.github.io",
+      "query_interfaces": ["gRPC", "Rust library", "CLI"],
+      "vector_strategy": "none",
+      "vector_summary": "No native vector index is documented; IndraDB is a directed typed graph store inspired by Facebook's TAO datastore.",
+      "ha": "Pluggable datastores (in-memory, sled, RocksDB, PostgreSQL)",
+      "deployment": "Embedded Rust library, standalone server, or CLI",
+      "best_fit": "Embedded or cross-language property-graph workloads that need a minimal Rust-native engine",
+      "profile": "databases/indradb/README.md",
+      "source_urls": [
+        "https://github.com/indradb/indradb",
+        "https://indradb.github.io"
+      ],
+      "notes": "Design is inspired by Facebook's TAO graph datastore. Ships a server (gRPC) and an embeddable library, with pluggable underlying storage."
+    },
+    {
+      "id": "hgraphdb",
+      "name": "HGraphDB",
+      "model": "property",
+      "status": "legacy",
+      "license": "Apache 2.0",
+      "license_type": "permissive",
+      "website": "https://github.com/rayokota/hgraphdb",
+      "query_interfaces": ["Gremlin"],
+      "vector_strategy": "none",
+      "vector_summary": "No native vector index; HGraphDB is a TinkerPop 3 client layer that turns Apache HBase into a graph database.",
+      "ha": "Inherits HBase distribution and replication",
+      "deployment": "Client library on top of an Apache HBase cluster",
+      "best_fit": "Organizations already running HBase that need a TinkerPop 3 graph layer with Giraph or Spark GraphFrames integration",
+      "profile": "databases/hgraphdb/README.md",
+      "source_urls": [
+        "https://github.com/rayokota/hgraphdb",
+        "https://blogs.apache.org/hbase/entry/hgraphdb_hbase_as_a_tinkerpop"
+      ],
+      "notes": "Created by Robert Yokota. Provides Gremlin over HBase via the TinkerPop 3 API. Listed as an official Apache TinkerPop provider."
+    },
+    {
+      "id": "sap-hana-graph",
+      "name": "SAP HANA Graph",
+      "model": "multi",
+      "status": "production",
+      "license": "Commercial",
+      "license_type": "commercial",
+      "website": "https://help.sap.com/docs/hana-cloud-database/sap-hana-cloud-sap-hana-database-property-graph-engine-reference/",
+      "query_interfaces": ["openCypher", "GraphScript", "SQL"],
+      "vector_strategy": "integrated",
+      "vector_summary": "SAP HANA Cloud exposes a dedicated vector engine alongside the property graph engine in the same database, so graph pattern matching and vector similarity can be combined in a single SQL session.",
+      "ha": "SAP HANA system replication and scale-out",
+      "deployment": "SAP HANA Cloud (managed) or self-hosted SAP HANA",
+      "best_fit": "Organizations already standardized on SAP HANA that want property-graph analytics and vector search without a second system",
+      "profile": "databases/sap-hana-graph/README.md",
+      "source_urls": [
+        "https://help.sap.com/docs/hana-cloud-database/sap-hana-cloud-sap-hana-database-property-graph-engine-reference/appendix-d-opencypher-cheat-sheet",
+        "https://developers.sap.com/group.hana-aa-graph-overview.html"
+      ],
+      "notes": "SAP HANA's native graph engine ships as part of SAP HANA core functionality. Supports openCypher for pattern matching and GraphScript for implementing graph algorithms inside the database."
     }
   ]
 }
