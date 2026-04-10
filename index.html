@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Graph Database Resource Catalog</title>
+    <meta
+      name="description"
+      content="A curated reference collection of RDF stores, label property graph databases, multi-model engines, and vector-search strategies."
+    />
+    <meta
+      name="keywords"
+      content="graph database, RDF, SPARQL, property graph, vector search, knowledge graph, reference"
+    />
+    <meta name="theme-color" content="#06060a" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=IBM+Plex+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      *,
+      *::before,
+      *::after {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        background: #06060a;
+        color: #f3f3f6;
+        font-family: "IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        line-height: 1.55;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        text-rendering: optimizeLegibility;
+      }
+
+      #root {
+        min-height: 100vh;
+      }
+
+      ::selection {
+        background: rgba(120, 180, 255, 0.32);
+        color: #ffffff;
+      }
+
+      /* Grain texture overlay — added via body::before so it sits above the bg
+         but below content. z-index 0 content sits above via position: relative. */
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        z-index: 1;
+        opacity: 0.5;
+        mix-blend-mode: overlay;
+        background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.08 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+      }
+
+      /* Subtle grid backdrop behind hero */
+      body::after {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 720px;
+        pointer-events: none;
+        z-index: 0;
+        background-image:
+          linear-gradient(rgba(120, 150, 220, 0.045) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(120, 150, 220, 0.045) 1px, transparent 1px);
+        background-size: 56px 56px;
+        mask-image: radial-gradient(ellipse 80% 70% at 50% 18%, #000 20%, transparent 75%);
+        -webkit-mask-image: radial-gradient(ellipse 80% 70% at 50% 18%, #000 20%, transparent 75%);
+      }
+
+      *::-webkit-scrollbar {
+        width: 10px;
+        height: 10px;
+      }
+      *::-webkit-scrollbar-track {
+        background: #08080c;
+      }
+      *::-webkit-scrollbar-thumb {
+        background: #23232c;
+        border-radius: 10px;
+        border: 2px solid #08080c;
+      }
+      *::-webkit-scrollbar-thumb:hover {
+        background: #34343f;
+      }
+
+      @keyframes gdrc-pulse {
+        0%, 100% { transform: scale(1); opacity: 1; }
+        50% { transform: scale(1.35); opacity: 0.55; }
+      }
+      @keyframes gdrc-rise {
+        from { opacity: 0; transform: translateY(14px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+      @keyframes gdrc-drift {
+        0%, 100% { transform: translate(-50%, 0) scale(1); }
+        50% { transform: translate(-50%, 12px) scale(1.04); }
+      }
+
+      .gdrc-rise { animation: gdrc-rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) both; }
+      .gdrc-rise-1 { animation-delay: 0.05s; }
+      .gdrc-rise-2 { animation-delay: 0.14s; }
+      .gdrc-rise-3 { animation-delay: 0.22s; }
+      .gdrc-rise-4 { animation-delay: 0.3s; }
+
+      .gdrc-card {
+        transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+                    border-color 0.35s ease,
+                    background 0.35s ease,
+                    box-shadow 0.35s ease;
+      }
+      .gdrc-card:hover {
+        transform: translateY(-3px);
+        border-color: rgba(120, 150, 220, 0.35) !important;
+        box-shadow: 0 24px 60px -28px rgba(0, 0, 0, 0.9),
+                    0 0 0 1px rgba(120, 150, 220, 0.18) inset;
+      }
+
+      .gdrc-row {
+        transition: background 0.2s ease, box-shadow 0.2s ease;
+      }
+
+      .gdrc-search:focus {
+        border-color: rgba(120, 170, 255, 0.7) !important;
+        box-shadow: 0 0 0 4px rgba(96, 165, 250, 0.14),
+                    0 1px 0 0 rgba(255, 255, 255, 0.04) inset !important;
+      }
+
+      .gdrc-kbd {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 10px;
+        font-weight: 600;
+        padding: 3px 7px;
+        border-radius: 5px;
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-bottom-width: 2px;
+        color: #9a9aa8;
+        letter-spacing: 0.5px;
+      }
+
+      .gdrc-link-arrow {
+        display: inline-block;
+        transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+      }
+      a:hover .gdrc-link-arrow {
+        transform: translate(2px, -2px);
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

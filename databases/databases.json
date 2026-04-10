@@ -1,0 +1,1021 @@
+{
+  "_meta": {
+    "version": "3.0.0",
+    "last_updated": "2026-04-10",
+    "title": "Graph Database Resource Catalog",
+    "scope": "Primary-source reference collection of RDF stores, label property graph databases, multi-model engines, and adjacent graph systems with explicit vector-strategy classification.",
+    "methodology": "Each entry is anchored to current official product pages, documentation, or source repositories. The catalog distinguishes native vector search from connector-based, sibling-service, and paired-extension patterns. Public-doc ambiguity is labeled explicitly instead of inferred as a capability.",
+    "models": {
+      "rdf": "RDF / SPARQL-native system",
+      "property": "Label property graph database or managed property-graph service",
+      "multi": "Multi-model system that includes graph alongside other models",
+      "specialized": "Graph-adjacent or specialized knowledge engine that does not map cleanly to RDF or LPG"
+    },
+    "statuses": {
+      "production": "Actively shipped and suitable for serious evaluation or deployment",
+      "emerging": "Active but still early, preview, or insufficiently battle-tested",
+      "legacy": "Historical, archived, end-of-life, or not recommended for new deployments"
+    },
+    "vector_strategies": {
+      "native": "Vector indexing and query capability are documented in the same engine",
+      "integrated": "Vector capability depends on an integrated search subsystem or connector",
+      "paired": "The documented pattern is to pair the graph engine with an extension, toolkit, or sibling component in the same stack",
+      "sibling": "A separate managed service or API in the same vendor platform provides vector search",
+      "none": "No documented vector capability in the graph engine",
+      "unclear": "AI or semantic-search claims exist, but current public docs do not expose a clear general-purpose vector implementation"
+    },
+    "license_types": {
+      "permissive": "Permissive open-source license",
+      "copyleft": "Copyleft open-source license",
+      "open-core": "Open-source core with commercial edition for key capabilities",
+      "source-available": "Source available or community license with usage restrictions",
+      "commercial": "Commercial or managed-service offering"
+    }
+  },
+  "databases": [
+    {
+      "id": "qlever",
+      "name": "QLever",
+      "model": "rdf",
+      "status": "production",
+      "license": "Apache 2.0",
+      "license_type": "permissive",
+      "website": "https://github.com/ad-freiburg/qlever",
+      "query_interfaces": ["SPARQL 1.1"],
+      "vector_strategy": "none",
+      "vector_summary": "No native vector index is documented; pair with an external vector engine when needed.",
+      "ha": "No native cluster",
+      "deployment": "Self-hosted, single-node",
+      "best_fit": "High-performance open-source SPARQL on large datasets",
+      "profile": "databases/qlever/README.md",
+      "source_urls": [
+        "https://github.com/ad-freiburg/qlever",
+        "https://github.com/ad-freiburg/qlever/wiki/QLever-performance-evaluation-and-comparison-to-other-SPARQL-engines"
+      ],
+      "notes": "Strong benchmark story and production endpoints; vector search is out of scope for the core engine."
+    },
+    {
+      "id": "apache-jena",
+      "name": "Apache Jena / Fuseki",
+      "model": "rdf",
+      "status": "production",
+      "license": "Apache 2.0",
+      "license_type": "permissive",
+      "website": "https://jena.apache.org",
+      "query_interfaces": ["SPARQL 1.1"],
+      "vector_strategy": "none",
+      "vector_summary": "No native ANN vector feature in Jena or Fuseki; use an external vector service.",
+      "ha": "Depends on external replication pattern",
+      "deployment": "Self-hosted",
+      "best_fit": "Standards-heavy RDF, reasoning, and Java ecosystem integration",
+      "profile": "databases/apache-jena/README.md",
+      "source_urls": [
+        "https://jena.apache.org/documentation/fuseki2/",
+        "https://jena.apache.org/documentation/tdb2/"
+      ],
+      "notes": "Broadest semantic-web ecosystem in the catalog."
+    },
+    {
+      "id": "virtuoso-ose",
+      "name": "OpenLink Virtuoso OSE",
+      "model": "multi",
+      "status": "production",
+      "license": "GPL v2",
+      "license_type": "copyleft",
+      "website": "https://github.com/openlink/virtuoso-opensource",
+      "query_interfaces": ["SPARQL 1.1", "SQL"],
+      "vector_strategy": "none",
+      "vector_summary": "Open-source Virtuoso is not documented as a modern native ANN vector engine.",
+      "ha": "Yes",
+      "deployment": "Self-hosted",
+      "best_fit": "Battle-tested RDF plus SQL in one engine",
+      "profile": "databases/virtuoso-ose/README.md",
+      "source_urls": [
+        "https://github.com/openlink/virtuoso-opensource",
+        "https://www.w3.org/wiki/LargeTripleStores"
+      ],
+      "notes": "Still one of the safest choices when scale and SPARQL maturity matter more than vector support."
+    },
+    {
+      "id": "oxigraph",
+      "name": "Oxigraph",
+      "model": "rdf",
+      "status": "emerging",
+      "license": "MIT / Apache 2.0",
+      "license_type": "permissive",
+      "website": "https://github.com/oxigraph/oxigraph",
+      "query_interfaces": ["SPARQL 1.1", "SPARQL 1.2 drafts"],
+      "vector_strategy": "none",
+      "vector_summary": "No vector index is documented in the core project.",
+      "ha": "No",
+      "deployment": "Embedded library, self-hosted server, WASM",
+      "best_fit": "Embeddable Rust RDF workloads",
+      "profile": "databases/oxigraph/README.md",
+      "source_urls": [
+        "https://github.com/oxigraph/oxigraph",
+        "https://pyoxigraph.readthedocs.io/"
+      ],
+      "notes": "Excellent embedding story, but still better treated as emerging than fully mature infrastructure."
+    },
+    {
+      "id": "sutradb",
+      "name": "SutraDB",
+      "model": "rdf",
+      "status": "emerging",
+      "license": "Apache 2.0",
+      "license_type": "permissive",
+      "website": "https://sutradb.org",
+      "query_interfaces": ["SPARQL 1.1 superset"],
+      "vector_strategy": "native",
+      "vector_summary": "Embeddings are stored in RDF and indexed natively with HNSW-style vector search.",
+      "ha": "No",
+      "deployment": "Embedded / self-hosted",
+      "best_fit": "Early RDF plus vector experiments in one query model",
+      "profile": "databases/sutradb/README.md",
+      "source_urls": [
+        "https://sutradb.org"
+      ],
+      "notes": "Interesting architecture, but still preview-stage."
+    },
+    {
+      "id": "oxirs",
+      "name": "OxiRS",
+      "model": "rdf",
+      "status": "emerging",
+      "license": "Apache 2.0",
+      "license_type": "permissive",
+      "website": "https://github.com/cool-japan/oxirs",
+      "query_interfaces": ["SPARQL", "GraphQL"],
+      "vector_strategy": "native",
+      "vector_summary": "The project documents vector support through its own crates, but the public evidence is still mostly self-reported.",
+      "ha": "Claimed",
+      "deployment": "Self-hosted",
+      "best_fit": "Experimental Rust semantic stack",
+      "profile": "databases/oxirs/README.md",
+      "source_urls": [
+        "https://github.com/cool-japan/oxirs"
+      ],
+      "notes": "Treat vendor README claims carefully until more independent evidence exists."
+    },
+    {
+      "id": "grafeo",
+      "name": "Grafeo",
+      "model": "multi",
+      "status": "emerging",
+      "license": "Apache 2.0",
+      "license_type": "permissive",
+      "website": "https://grafeo.dev",
+      "query_interfaces": ["GQL", "Cypher", "Gremlin", "SPARQL"],
+      "vector_strategy": "native",
+      "vector_summary": "The product documents native vector search, but the public SPARQL depth and production evidence remain limited.",
+      "ha": "Not clearly documented",
+      "deployment": "Embedded / self-hosted",
+      "best_fit": "Polyglot graph R&D and API experimentation",
+      "profile": "databases/grafeo/README.md",
+      "source_urls": [
+        "https://grafeo.dev"
+      ],
+      "notes": "Interesting multi-model direction, still early for production benchmarking."
+    },
+    {
+      "id": "stardog",
+      "name": "Stardog",
+      "model": "rdf",
+      "status": "production",
+      "license": "Commercial",
+      "license_type": "commercial",
+      "website": "https://www.stardog.com",
+      "query_interfaces": ["SPARQL 1.1", "GraphQL"],
+      "vector_strategy": "native",
+      "vector_summary": "Vector search is documented inside the same Stardog stack and query surface.",
+      "ha": "Yes",
+      "deployment": "Self-hosted, managed options via partners",
+      "best_fit": "Enterprise RDF, reasoning, and GraphRAG in one platform",
+      "profile": "databases/stardog/README.md",
+      "source_urls": [
+        "https://docs.stardog.com/query-stardog/semantic-search",
+        "https://docs.stardog.com/query-stardog/full-text-search"
+      ],
+      "notes": "One of the clearest commercial RDF plus vector offerings."
+    },
+    {
+      "id": "allegrograph",
+      "name": "AllegroGraph",
+      "model": "rdf",
+      "status": "production",
+      "license": "Commercial",
+      "license_type": "commercial",
+      "website": "https://allegrograph.com",
+      "query_interfaces": ["SPARQL 1.1", "Prolog"],
+      "vector_strategy": "native",
+      "vector_summary": "VectorStore is documented as a native AllegroGraph feature.",
+      "ha": "Yes",
+      "deployment": "Self-hosted",
+      "best_fit": "Commercial RDF, reasoning, and graph-plus-vector use cases",
+      "profile": "databases/allegrograph/README.md",
+      "source_urls": [
+        "https://franz.com/agraph/support/documentation/vector-dbs-and-rag.html",
+        "https://allegrograph.com"
+      ],
+      "notes": "Long-running commercial RDF store with explicit graph-plus-vector positioning."
+    },
+    {
+      "id": "graphdb",
+      "name": "GraphDB",
+      "model": "rdf",
+      "status": "production",
+      "license": "Commercial",
+      "license_type": "commercial",
+      "website": "https://graphdb.ontotext.com",
+      "query_interfaces": ["SPARQL 1.1"],
+      "vector_strategy": "integrated",
+      "vector_summary": "Vector search is delivered through the Elasticsearch or OpenSearch connector layer, not as an in-engine ANN index.",
+      "ha": "Yes",
+      "deployment": "Self-hosted, managed by partners",
+      "best_fit": "Reasoning-heavy RDF where connector-based vector search is acceptable",
+      "profile": "databases/graphdb/README.md",
+      "source_urls": [
+        "https://graphdb.ontotext.com/documentation/11.3/embedding-model-configuration.html",
+        "https://graphdb.ontotext.com/documentation/11.3/"
+      ],
+      "notes": "Important distinction: integrated vector pattern, not native vector core."
+    },
+    {
+      "id": "amazon-neptune",
+      "name": "Amazon Neptune",
+      "model": "multi",
+      "status": "production",
+      "license": "Commercial managed service",
+      "license_type": "commercial",
+      "website": "https://aws.amazon.com/neptune/",
+      "query_interfaces": ["SPARQL 1.1", "Gremlin", "openCypher"],
+      "vector_strategy": "sibling",
+      "vector_summary": "Vector search is exposed through Neptune Analytics rather than the core Neptune database engine.",
+      "ha": "Managed",
+      "deployment": "AWS managed service",
+      "best_fit": "Managed RDF plus property graph on AWS with adjacent analytics",
+      "profile": "databases/amazon-neptune/README.md",
+      "source_urls": [
+        "https://docs.aws.amazon.com/neptune-analytics/",
+        "https://docs.aws.amazon.com/neptune/latest/userguide/sparql.html"
+      ],
+      "notes": "Useful when AWS-managed operations matter more than single-engine purity."
+    },
+    {
+      "id": "rdfox",
+      "name": "RDFox",
+      "model": "rdf",
+      "status": "production",
+      "license": "Commercial",
+      "license_type": "commercial",
+      "website": "https://www.oxfordsemantic.tech/rdfox",
+      "query_interfaces": ["SPARQL 1.1", "Datalog"],
+      "vector_strategy": "unclear",
+      "vector_summary": "Current public docs clearly document RDF, SPARQL, and reasoning. A general-purpose vector feature is not clearly exposed in the public technical docs we could verify.",
+      "ha": "Yes",
+      "deployment": "Self-hosted, embeddable",
+      "best_fit": "High-performance in-memory RDF and rules-based reasoning",
+      "profile": "databases/rdfox/README.md",
+      "source_urls": [
+        "https://docs.oxfordsemantic.tech/",
+        "https://www.oxfordsemantic.tech/rdfox"
+      ],
+      "notes": "Do not classify RDFox as a confirmed vector database without version-specific vendor evidence."
+    },
+    {
+      "id": "marklogic",
+      "name": "MarkLogic",
+      "model": "multi",
+      "status": "production",
+      "license": "Commercial",
+      "license_type": "commercial",
+      "website": "https://www.progress.com/marklogic",
+      "query_interfaces": ["SPARQL 1.1", "SQL", "XQuery", "JavaScript"],
+      "vector_strategy": "native",
+      "vector_summary": "MarkLogic documents built-in vector search alongside graph, search, and document features.",
+      "ha": "Yes",
+      "deployment": "Self-hosted",
+      "best_fit": "Enterprise multi-model with graph, search, and vector in one platform",
+      "profile": "databases/marklogic/README.md",
+      "source_urls": [
+        "https://www.progress.com/marklogic/server/features/vector-search",
+        "https://docs.progress.com/bundle/marklogic-server-develop-12/page/topics/semantics.html"
+      ],
+      "notes": "Strong option when one enterprise platform must cover search, documents, graph, and vector."
+    },
+    {
+      "id": "surrealdb",
+      "name": "SurrealDB",
+      "model": "multi",
+      "status": "production",
+      "license": "BSL 1.1",
+      "license_type": "source-available",
+      "website": "https://surrealdb.com/docs/surrealdb",
+      "query_interfaces": ["SurrealQL", "GraphQL"],
+      "vector_strategy": "native",
+      "vector_summary": "SurrealDB documents brute-force and HNSW vector search inside SurrealQL.",
+      "ha": "Yes",
+      "deployment": "Embedded, self-hosted, managed cloud",
+      "best_fit": "Unified application database with graph and vector in one query language",
+      "profile": "databases/surrealdb/README.md",
+      "source_urls": [
+        "https://surrealdb.com/docs/surrealdb/reference-guide/vector-search",
+        "https://surrealdb.com/docs/surrealdb"
+      ],
+      "notes": "One of the cleaner multi-model vector stories in current public docs."
+    },
+    {
+      "id": "terminusdb",
+      "name": "TerminusDB + VectorLink",
+      "model": "multi",
+      "status": "production",
+      "license": "Apache 2.0",
+      "license_type": "permissive",
+      "website": "https://terminusdb.org",
+      "query_interfaces": ["WOQL", "GraphQL"],
+      "vector_strategy": "paired",
+      "vector_summary": "VectorLink is a separate service paired with TerminusDB rather than a native graph-engine feature.",
+      "ha": "Limited",
+      "deployment": "Self-hosted",
+      "best_fit": "Versioned knowledge-graph workflows with a sidecar vector service",
+      "profile": "databases/terminusdb/README.md",
+      "source_urls": [
+        "https://terminusdb.org",
+        "https://github.com/terminusdb-labs/vectorlink"
+      ],
+      "notes": "Strong for document and versioning workflows, but not a single-engine RDF plus vector story."
+    },
+    {
+      "id": "blazegraph",
+      "name": "Blazegraph",
+      "model": "rdf",
+      "status": "legacy",
+      "license": "GPL v2",
+      "license_type": "copyleft",
+      "website": "https://github.com/blazegraph/database",
+      "query_interfaces": ["SPARQL 1.1"],
+      "vector_strategy": "none",
+      "vector_summary": "No native vector search is documented.",
+      "ha": "Historical",
+      "deployment": "Self-hosted",
+      "best_fit": "Legacy RDF migration planning",
+      "profile": "databases/blazegraph/README.md",
+      "source_urls": [
+        "https://github.com/blazegraph/database"
+      ],
+      "notes": "Keep only as a legacy reference, not a recommendation for new deployments."
+    },
+    {
+      "id": "neo4j",
+      "name": "Neo4j",
+      "model": "property",
+      "status": "production",
+      "license": "GPL v3 Community / commercial Enterprise",
+      "license_type": "open-core",
+      "website": "https://neo4j.com",
+      "query_interfaces": ["Cypher", "GQL"],
+      "vector_strategy": "native",
+      "vector_summary": "Lucene-backed HNSW vector indexes are documented. The first-class VECTOR type requires server 2025.10+ Enterprise.",
+      "ha": "Enterprise / Aura",
+      "deployment": "Self-hosted, Aura managed",
+      "best_fit": "Cypher-centric OLTP graph workloads and enterprise GraphRAG",
+      "profile": "databases/neo4j/README.md",
+      "source_urls": [
+        "https://neo4j.com/docs/cypher-manual/current/indexes/semantic-indexes/vector-indexes/",
+        "https://neo4j.com/docs/go-manual/current/data-types/"
+      ],
+      "notes": "Largest ecosystem in the LPG segment."
+    },
+    {
+      "id": "memgraph",
+      "name": "Memgraph",
+      "model": "property",
+      "status": "production",
+      "license": "BSL 1.1",
+      "license_type": "source-available",
+      "website": "https://memgraph.com",
+      "query_interfaces": ["Cypher", "GQL"],
+      "vector_strategy": "native",
+      "vector_summary": "Official releases document HNSW-style vector indexes for both nodes and relationships.",
+      "ha": "Yes",
+      "deployment": "Self-hosted",
+      "best_fit": "Real-time graph workloads with integrated vector search",
+      "profile": "databases/memgraph/README.md",
+      "source_urls": [
+        "https://memgraph.com/blog/memgraph-3-4-release-announcement",
+        "https://memgraph.com/docs"
+      ],
+      "notes": "Relationship vectors are a differentiator for recommendation and interaction-heavy workloads."
+    },
+    {
+      "id": "falkordb",
+      "name": "FalkorDB",
+      "model": "property",
+      "status": "production",
+      "license": "SSPL v1",
+      "license_type": "source-available",
+      "website": "https://www.falkordb.com",
+      "query_interfaces": ["Cypher", "Bolt procedures"],
+      "vector_strategy": "native",
+      "vector_summary": "Vector indexes are documented for both nodes and relationships, with HNSW parameters exposed.",
+      "ha": "Yes",
+      "deployment": "Self-hosted, managed options",
+      "best_fit": "Fast graph plus vector search with RedisGraph lineage",
+      "profile": "databases/falkordb/README.md",
+      "source_urls": [
+        "https://docs.falkordb.com/cypher/indexing/vector-index",
+        "https://www.falkordb.com"
+      ],
+      "notes": "Active successor path for teams leaving RedisGraph."
+    },
+    {
+      "id": "arangodb",
+      "name": "ArangoDB",
+      "model": "multi",
+      "status": "production",
+      "license": "ArangoDB Community License / commercial Enterprise",
+      "license_type": "source-available",
+      "website": "https://arangodb.com",
+      "query_interfaces": ["AQL"],
+      "vector_strategy": "native",
+      "vector_summary": "ArangoDB 3.12 documents native vector indexes and combines them with graph traversals in AQL.",
+      "ha": "Yes",
+      "deployment": "Self-hosted, ArangoGraph managed cloud",
+      "best_fit": "Teams that want graphs, search, documents, and vectors in one query model",
+      "profile": "databases/arangodb/README.md",
+      "source_urls": [
+        "https://docs.arangodb.com/3.12/develop/http-api/indexes/vector/",
+        "https://docs.arangodb.com/3.12/get-started/start-using-aql/graphs/",
+        "https://docs.arangodb.com/3.13/about-arangodb/features/"
+      ],
+      "notes": "Current community licensing is not permissive open source; read the community license carefully."
+    },
+    {
+      "id": "arcadedb",
+      "name": "ArcadeDB",
+      "model": "multi",
+      "status": "production",
+      "license": "Apache 2.0",
+      "license_type": "permissive",
+      "website": "https://arcadedb.com",
+      "query_interfaces": ["SQL", "openCypher", "Gremlin", "GraphQL", "MongoDB protocol"],
+      "vector_strategy": "native",
+      "vector_summary": "ArcadeDB publicly documents vectors as a first-class built-in model inside the same engine.",
+      "ha": "Yes",
+      "deployment": "Embedded, self-hosted, Kubernetes",
+      "best_fit": "Polyglot multi-model workloads that need a genuinely open license",
+      "profile": "databases/arcadedb/README.md",
+      "source_urls": [
+        "https://arcadedb.com/",
+        "https://arcadedb.com/knowledge-graphs.html"
+      ],
+      "notes": "Strong open-source multi-model option if you accept a younger ecosystem than Neo4j or ArangoDB."
+    },
+    {
+      "id": "nebulagraph",
+      "name": "NebulaGraph",
+      "model": "property",
+      "status": "production",
+      "license": "Apache 2.0 Community / commercial Enterprise",
+      "license_type": "open-core",
+      "website": "https://www.nebula-graph.io",
+      "query_interfaces": ["nGQL", "openCypher"],
+      "vector_strategy": "native",
+      "vector_summary": "NebulaGraph documents native vector search in Enterprise and newer cloud offerings, not in the Apache 2.0 community core.",
+      "ha": "Yes",
+      "deployment": "Self-hosted, managed cloud",
+      "best_fit": "Distributed LPG at large scale, especially in enterprise deployments",
+      "profile": "databases/nebulagraph/README.md",
+      "source_urls": [
+        "https://www.nebula-graph.io/posts/NebulaGraph_v5.1_Embeds_Vector_Search",
+        "https://www.nebula-graph.io/posts/NebulaGraph_Cloud_Latest_Version"
+      ],
+      "notes": "Vector classification here reflects enterprise and cloud docs, not community-only deployments."
+    },
+    {
+      "id": "hugegraph",
+      "name": "Apache HugeGraph",
+      "model": "property",
+      "status": "production",
+      "license": "Apache 2.0",
+      "license_type": "permissive",
+      "website": "https://hugegraph.apache.org",
+      "query_interfaces": ["Gremlin", "Cypher", "REST"],
+      "vector_strategy": "paired",
+      "vector_summary": "GraphRAG and embedding workflows are documented through HugeGraph-AI and HugeGraph-LLM rather than the OLTP core database.",
+      "ha": "Yes",
+      "deployment": "Self-hosted",
+      "best_fit": "Large-scale Gremlin workloads with adjacent GraphRAG tooling",
+      "profile": "databases/hugegraph/README.md",
+      "source_urls": [
+        "https://hugegraph.apache.org/docs/",
+        "https://hugegraph.apache.org/docs/quickstart/hugegraph-ai/",
+        "https://hugegraph.apache.org/docs/quickstart/hugegraph-ai/hugegraph-llm/"
+      ],
+      "notes": "Do not mistake the AI toolkit for a native vector index in the core server."
+    },
+    {
+      "id": "apache-age",
+      "name": "Apache AGE",
+      "model": "property",
+      "status": "production",
+      "license": "Apache 2.0",
+      "license_type": "permissive",
+      "website": "https://age.apache.org/overview/",
+      "query_interfaces": ["openCypher", "SQL"],
+      "vector_strategy": "paired",
+      "vector_summary": "The practical vector pattern is AGE plus PostgreSQL's pgvector extension in the same database stack.",
+      "ha": "PostgreSQL dependent",
+      "deployment": "Self-hosted, managed PostgreSQL variants",
+      "best_fit": "PostgreSQL shops adding graph queries without leaving Postgres",
+      "profile": "databases/apache-age/README.md",
+      "source_urls": [
+        "https://age.apache.org/overview/",
+        "https://github.com/pgvector/pgvector"
+      ],
+      "notes": "This is an architectural pairing, not a built-in AGE feature."
+    },
+    {
+      "id": "tigergraph",
+      "name": "TigerGraph",
+      "model": "property",
+      "status": "production",
+      "license": "Commercial",
+      "license_type": "commercial",
+      "website": "https://www.tigergraph.com",
+      "query_interfaces": ["GSQL"],
+      "vector_strategy": "native",
+      "vector_summary": "TigerGraph 4.2 release notes document hybrid vector search with native vector attributes and ANN indexing.",
+      "ha": "Yes",
+      "deployment": "Self-hosted, managed cloud",
+      "best_fit": "Large-scale operational property graphs with integrated vector search",
+      "profile": "databases/tigergraph/README.md",
+      "source_urls": [
+        "https://docs.tigergraph.com/tigergraph-server/4.2/release-notes/"
+      ],
+      "notes": "Production-ready, but firmly commercial."
+    },
+    {
+      "id": "dgraph",
+      "name": "Dgraph",
+      "model": "property",
+      "status": "production",
+      "license": "Apache 2.0",
+      "license_type": "permissive",
+      "website": "https://dgraph.io",
+      "query_interfaces": ["DQL", "GraphQL"],
+      "vector_strategy": "native",
+      "vector_summary": "Dgraph documents float32vector plus HNSW indexes in DQL.",
+      "ha": "Yes",
+      "deployment": "Self-hosted, managed by partners",
+      "best_fit": "Distributed graph plus vector with GraphQL-friendly workflows",
+      "profile": "databases/dgraph/README.md",
+      "source_urls": [
+        "https://docs.dgraph.io/learn/howto/similarity-search/"
+      ],
+      "notes": "Clear first-class vector support in current official docs."
+    },
+    {
+      "id": "janusgraph",
+      "name": "JanusGraph",
+      "model": "property",
+      "status": "production",
+      "license": "Apache 2.0",
+      "license_type": "permissive",
+      "website": "https://janusgraph.org",
+      "query_interfaces": ["Gremlin"],
+      "vector_strategy": "none",
+      "vector_summary": "Current public JanusGraph docs emphasize graph plus search backends, not a native vector index.",
+      "ha": "Backend dependent",
+      "deployment": "Self-hosted",
+      "best_fit": "Distributed Gremlin over Cassandra, HBase, Bigtable, or similar backends",
+      "profile": "databases/janusgraph/README.md",
+      "source_urls": [
+        "https://janusgraph.org/",
+        "https://docs.janusgraph.org/"
+      ],
+      "notes": "Still relevant when you want a graph layer on top of existing backend infrastructure."
+    },
+    {
+      "id": "orientdb",
+      "name": "OrientDB",
+      "model": "multi",
+      "status": "production",
+      "license": "Apache 2.0",
+      "license_type": "permissive",
+      "website": "https://orientdb.dev",
+      "query_interfaces": ["SQL", "Gremlin"],
+      "vector_strategy": "none",
+      "vector_summary": "Current public OrientDB docs do not document a native vector engine.",
+      "ha": "Yes",
+      "deployment": "Self-hosted",
+      "best_fit": "General-purpose multi-model graph and document workloads",
+      "profile": "databases/orientdb/README.md",
+      "source_urls": [
+        "https://orientdb.dev",
+        "https://github.com/orientechnologies/orientdb"
+      ],
+      "notes": "Still active, but less differentiated than newer multi-model graph systems."
+    },
+    {
+      "id": "typedb",
+      "name": "TypeDB",
+      "model": "specialized",
+      "status": "production",
+      "license": "Polyform / MPL by component",
+      "license_type": "source-available",
+      "website": "https://typedb.com",
+      "query_interfaces": ["TypeQL"],
+      "vector_strategy": "none",
+      "vector_summary": "Current public TypeDB docs emphasize reasoning and schema, not vector indexing.",
+      "ha": "Yes",
+      "deployment": "Self-hosted, TypeDB Cloud",
+      "best_fit": "Strongly typed reasoning-heavy knowledge systems",
+      "profile": "databases/typedb/README.md",
+      "source_urls": [
+        "https://typedb.com/docs/home/get-started/overview",
+        "https://github.com/typedb/typedb"
+      ],
+      "notes": "Included as a specialized comparison point, not as a standard LPG."
+    },
+    {
+      "id": "cosmos-gremlin",
+      "name": "Azure Cosmos DB for Gremlin",
+      "model": "property",
+      "status": "production",
+      "license": "Commercial managed service",
+      "license_type": "commercial",
+      "website": "https://learn.microsoft.com/azure/cosmos-db/gremlin/",
+      "query_interfaces": ["Gremlin"],
+      "vector_strategy": "sibling",
+      "vector_summary": "Cosmos vector indexing is documented for NoSQL, not for the Gremlin API itself.",
+      "ha": "Managed",
+      "deployment": "Azure managed service",
+      "best_fit": "Managed Gremlin on Azure when vector search can live in a sibling Cosmos API",
+      "profile": "databases/cosmos-gremlin/README.md",
+      "source_urls": [
+        "https://learn.microsoft.com/en-us/azure/cosmos-db/gremlin/overview",
+        "https://learn.microsoft.com/en-us/azure/cosmos-db/vector-search"
+      ],
+      "notes": "Important API boundary: Gremlin and vector search are not the same Cosmos API surface."
+    },
+    {
+      "id": "puppygraph",
+      "name": "PuppyGraph",
+      "model": "property",
+      "status": "production",
+      "license": "Commercial",
+      "license_type": "commercial",
+      "website": "https://www.puppygraph.com",
+      "query_interfaces": ["Gremlin", "openCypher"],
+      "vector_strategy": "paired",
+      "vector_summary": "PuppyGraph virtualizes graph queries over external stores; vector behavior is delegated to those underlying systems.",
+      "ha": "Yes",
+      "deployment": "Self-hosted, cloud marketplace images",
+      "best_fit": "Zero-ETL graph analytics over warehouse or lakehouse data",
+      "profile": "databases/puppygraph/README.md",
+      "source_urls": [
+        "https://docs.puppygraph.com/",
+        "https://docs.puppygraph.com/querying/",
+        "https://docs.puppygraph.com/reference/cypher-query-language/"
+      ],
+      "notes": "Architecturally important because it answers whether you need a separate graph store at all."
+    },
+    {
+      "id": "kuzu",
+      "name": "Kuzu",
+      "model": "property",
+      "status": "legacy",
+      "license": "MIT",
+      "license_type": "permissive",
+      "website": "https://github.com/kuzudb/kuzu",
+      "query_interfaces": ["Cypher"],
+      "vector_strategy": "native",
+      "vector_summary": "Kuzu shipped native vector and full-text extensions before the repository was archived.",
+      "ha": "No",
+      "deployment": "Embedded",
+      "best_fit": "Historical reference for embedded analytical property graphs",
+      "profile": "databases/kuzu/README.md",
+      "source_urls": [
+        "https://github.com/kuzudb/kuzu"
+      ],
+      "notes": "Useful only as a legacy benchmark reference and migration case."
+    },
+    {
+      "id": "ultipa",
+      "name": "Ultipa",
+      "model": "property",
+      "status": "production",
+      "license": "Commercial",
+      "license_type": "commercial",
+      "website": "https://www.ultipa.com",
+      "query_interfaces": ["GQL", "Ultipa APIs"],
+      "vector_strategy": "native",
+      "vector_summary": "Ultipa documents vector indexes and vector query procedures in the graph engine.",
+      "ha": "Yes",
+      "deployment": "Embedded, self-hosted, managed cloud",
+      "best_fit": "High-scale property graph workloads with strong AI positioning",
+      "profile": "databases/ultipa/README.md",
+      "source_urls": [
+        "https://www.ultipa.com/docs/gql/vector-index",
+        "https://www.ultipa.com/product/ultipa-graph",
+        "https://www.ultipa.com/article/technical/ultipa-now-supports-vector-search"
+      ],
+      "notes": "Active and credible, but mostly vendor-supplied public evidence."
+    },
+    {
+      "id": "aerospike",
+      "name": "Aerospike Graph",
+      "model": "property",
+      "status": "production",
+      "license": "Commercial",
+      "license_type": "commercial",
+      "website": "https://aerospike.com/docs/graph/quick-start",
+      "query_interfaces": ["Gremlin"],
+      "vector_strategy": "paired",
+      "vector_summary": "Aerospike Graph and Aerospike Vector Search are distinct product surfaces in current public documentation.",
+      "ha": "Yes",
+      "deployment": "Self-hosted",
+      "best_fit": "Aerospike-centric operational graphs with separate vector services if needed",
+      "profile": "databases/aerospike/README.md",
+      "source_urls": [
+        "https://aerospike.com/docs/graph/quick-start",
+        "https://aerospike.com/docs/graph/manage/summary/",
+        "https://aerospike.com/docs/vector/quick-start"
+      ],
+      "notes": "The repo previously overstated native graph-plus-vector coupling; the public docs show separate graph and vector product lines."
+    },
+    {
+      "id": "tarantool-graph",
+      "name": "Tarantool Graph DB",
+      "model": "property",
+      "status": "emerging",
+      "license": "Commercial",
+      "license_type": "commercial",
+      "website": "https://www.tarantool.io/en/solutions/vector-database/",
+      "query_interfaces": ["openCypher", "APIs"],
+      "vector_strategy": "native",
+      "vector_summary": "Tarantool markets a graph-vector database product, but the public material still reads as early-stage product collateral rather than mature documentation.",
+      "ha": "Claimed",
+      "deployment": "Self-hosted",
+      "best_fit": "Teams specifically evaluating Tarantool's graph-vector direction",
+      "profile": "databases/tarantool-graph/README.md",
+      "source_urls": [
+        "https://www.tarantool.io/en/solutions/vector-database/"
+      ],
+      "notes": "Keep in an emerging bucket until public docs and production references become deeper."
+    },
+    {
+      "id": "sparksee",
+      "name": "Sparksee",
+      "model": "specialized",
+      "status": "production",
+      "license": "Commercial",
+      "license_type": "commercial",
+      "website": "https://www.sparsity-technologies.com/sparksee-graph-database-management-system/",
+      "query_interfaces": ["Embedded APIs"],
+      "vector_strategy": "none",
+      "vector_summary": "Sparksee public docs describe an embedded graph database API, not native vector search.",
+      "ha": "No",
+      "deployment": "Embedded",
+      "best_fit": "Embedded and mobile graph applications",
+      "profile": "databases/sparksee/README.md",
+      "source_urls": [
+        "https://www.sparsity-technologies.com/sparksee-graph-database-management-system/",
+        "https://www.sparsity-technologies.com/doc-sparksee/UserManual/html/GraphDatabase.html"
+      ],
+      "notes": "Specialized embedded graph database, not a modern GraphRAG platform."
+    },
+    {
+      "id": "tugraph",
+      "name": "TuGraph",
+      "model": "property",
+      "status": "production",
+      "license": "Apache 2.0",
+      "license_type": "permissive",
+      "website": "https://tugraph-db.readthedocs.io",
+      "query_interfaces": ["openCypher", "GQL", "REST", "Procedures"],
+      "vector_strategy": "none",
+      "vector_summary": "Current public docs describe property-graph storage and GQL/openCypher, but not native vector search.",
+      "ha": "Yes",
+      "deployment": "Self-hosted",
+      "best_fit": "Property graph plus graph-computing workloads without native vector requirements",
+      "profile": "databases/tugraph/README.md",
+      "source_urls": [
+        "https://tugraph-db.readthedocs.io/en/v4.3.0/3.quick-start/1.preparation.html",
+        "https://tugraph-db.readthedocs.io/en/v4.0.1/5.developer-manual/6.interface/1.query/2.gql/1.intro.html"
+      ],
+      "notes": "Strong missing LPG entry from the previous repo version; now added to active scope."
+    },
+    {
+      "id": "agensgraph",
+      "name": "AgensGraph",
+      "model": "multi",
+      "status": "production",
+      "license": "Commercial community download / enterprise",
+      "license_type": "source-available",
+      "website": "https://www.bitnineglobal.com",
+      "query_interfaces": ["openCypher", "SQL"],
+      "vector_strategy": "none",
+      "vector_summary": "Current public AgensGraph materials focus on PostgreSQL plus graph, not vector search.",
+      "ha": "PostgreSQL dependent",
+      "deployment": "Self-hosted",
+      "best_fit": "PostgreSQL-compatible graph workloads using a Bitnine stack",
+      "profile": "databases/agensgraph/README.md",
+      "source_urls": [
+        "https://www.bitnineglobal.com/",
+        "https://www.bitnineglobal.com/download"
+      ],
+      "notes": "Added because it is still a relevant PostgreSQL-plus-graph product in the LPG landscape."
+    },
+    {
+      "id": "fluree",
+      "name": "Fluree",
+      "model": "multi",
+      "status": "production",
+      "license": "Commercial plus open components",
+      "license_type": "source-available",
+      "website": "https://flur.ee",
+      "query_interfaces": ["JSON-LD query", "SPARQL", "GraphQL"],
+      "vector_strategy": "unclear",
+      "vector_summary": "Fluree clearly positions itself for GraphRAG and semantic AI, but current public technical docs do not expose a clearly documented general-purpose ANN vector subsystem.",
+      "ha": "Yes",
+      "deployment": "Self-hosted, managed cloud",
+      "best_fit": "Semantic layer and JSON-LD knowledge-graph workflows",
+      "profile": "databases/fluree/README.md",
+      "source_urls": [
+        "https://flur.ee/",
+        "https://developers.flur.ee/docs/reference/full-text-search/",
+        "https://developers.flur.ee/docs/reference/querying/advanced-features/"
+      ],
+      "notes": "The previous repo version overstated vector specifics beyond what current public docs make explicit."
+    },
+    {
+      "id": "redisgraph",
+      "name": "RedisGraph",
+      "model": "property",
+      "status": "legacy",
+      "license": "Source available",
+      "license_type": "source-available",
+      "website": "https://github.com/RedisGraph/RedisGraph",
+      "query_interfaces": ["Cypher"],
+      "vector_strategy": "none",
+      "vector_summary": "No native vector graph search; the project is archived and replaced in practice by FalkorDB.",
+      "ha": "Historical",
+      "deployment": "Self-hosted",
+      "best_fit": "Legacy migration reference",
+      "profile": "databases/redisgraph/README.md",
+      "source_urls": [
+        "https://github.com/RedisGraph/RedisGraph"
+      ],
+      "notes": "Kept only to document the historical path toward FalkorDB."
+    },
+    {
+      "id": "cozo",
+      "name": "CozoDB",
+      "model": "multi",
+      "status": "production",
+      "license": "MPL-2.0",
+      "license_type": "permissive",
+      "website": "https://www.cozodb.org",
+      "query_interfaces": ["CozoScript (Datalog)"],
+      "vector_strategy": "native",
+      "vector_summary": "HNSW vector indexes are a first-class index type in CozoScript and can be combined with Datalog graph traversals in a single query.",
+      "ha": "Embedded or single-node server",
+      "deployment": "Embedded library, single-node server, or browser via WASM",
+      "best_fit": "Embedded knowledge-graph and graph-plus-vector workloads with a Datalog query surface",
+      "profile": "databases/cozo/README.md",
+      "source_urls": [
+        "https://github.com/cozodb/cozo",
+        "https://docs.cozodb.org/en/latest/vector.html"
+      ],
+      "notes": "One of the few open-source graph stores with a genuinely native HNSW index baked into the query engine."
+    },
+    {
+      "id": "oracle-graph",
+      "name": "Oracle Graph",
+      "model": "multi",
+      "status": "production",
+      "license": "Commercial",
+      "license_type": "commercial",
+      "website": "https://www.oracle.com/database/graph/",
+      "query_interfaces": ["PGQL", "SPARQL 1.1", "SQL/PGQ", "Gremlin"],
+      "vector_strategy": "integrated",
+      "vector_summary": "Oracle Database 23ai bundles AI Vector Search alongside PGQL and RDF, so graph traversals and vector similarity can be composed in a single query.",
+      "ha": "Enterprise RAC and Data Guard",
+      "deployment": "Oracle Database 23ai (self-hosted, cloud, or 23ai Free)",
+      "best_fit": "Enterprise workloads that need dual RDF and property-graph with native vector search in the same engine",
+      "profile": "databases/oracle-graph/README.md",
+      "source_urls": [
+        "https://docs.oracle.com/en/database/oracle/property-graph/",
+        "https://www.oracle.com/database/graph/"
+      ],
+      "notes": "Historically two separate layers (Oracle Spatial and Graph, Oracle RDF Graph); now unified under the Oracle Graph brand inside Oracle Database 23ai."
+    },
+    {
+      "id": "spanner-graph",
+      "name": "Google Spanner Graph",
+      "model": "property",
+      "status": "production",
+      "license": "Commercial",
+      "license_type": "commercial",
+      "website": "https://cloud.google.com/spanner/docs/graph/overview",
+      "query_interfaces": ["GQL (ISO/IEC 39075)", "SQL"],
+      "vector_strategy": "integrated",
+      "vector_summary": "Spanner exposes graph queries in ISO GQL alongside vector similarity functions and ScaNN-backed indexes in the same distributed SQL engine.",
+      "ha": "Global, strongly consistent, multi-region",
+      "deployment": "Google Cloud managed service",
+      "best_fit": "Globally distributed property-graph workloads that need transactional consistency plus vector search",
+      "profile": "databases/spanner-graph/README.md",
+      "source_urls": [
+        "https://cloud.google.com/spanner/docs/graph/overview",
+        "https://cloud.google.com/spanner/docs/find-approximate-nearest-neighbors"
+      ],
+      "notes": "First hyperscaler graph offering built on the ISO GQL standard; vector search and graph share one storage layer."
+    },
+    {
+      "id": "gel",
+      "name": "Gel (formerly EdgeDB)",
+      "model": "specialized",
+      "status": "production",
+      "license": "Apache 2.0",
+      "license_type": "permissive",
+      "website": "https://www.geldata.com",
+      "query_interfaces": ["EdgeQL", "GraphQL", "SQL (read-only)"],
+      "vector_strategy": "integrated",
+      "vector_summary": "Gel ships an official vector extension (ext::pgvector) that exposes ANN search from EdgeQL over its graph-relational object model.",
+      "ha": "Replication via Postgres backend",
+      "deployment": "Self-hosted, Docker, or Gel Cloud",
+      "best_fit": "Applications that want a graph-relational object model with first-class vector search",
+      "profile": "databases/gel/README.md",
+      "source_urls": [
+        "https://docs.geldata.com/",
+        "https://www.geldata.com/blog/edgedb-is-now-gel-and-postgres-is-the-future"
+      ],
+      "notes": "EdgeDB rebranded to Gel in 2025. The core model is graph-relational, not classical RDF or LPG, so it is catalogued as specialized."
+    },
+    {
+      "id": "datomic",
+      "name": "Datomic",
+      "model": "specialized",
+      "status": "production",
+      "license": "Apache 2.0 (binaries)",
+      "license_type": "source-available",
+      "website": "https://www.datomic.com",
+      "query_interfaces": ["Datalog", "Pull API", "Entity API"],
+      "vector_strategy": "none",
+      "vector_summary": "No native vector index is documented; Datomic is an immutable entity-attribute-value store queried with Datalog.",
+      "ha": "Datomic Cloud on AWS or Datomic Pro with external storage",
+      "deployment": "Self-hosted (Datomic Pro) or managed on AWS (Datomic Cloud)",
+      "best_fit": "Immutable entity-attribute-value knowledge bases with time-travel and Datalog",
+      "profile": "databases/datomic/README.md",
+      "source_urls": [
+        "https://docs.datomic.com/",
+        "https://blog.datomic.com/2023/04/datomic-is-free.html"
+      ],
+      "notes": "Datomic Pro binaries were released under Apache 2.0 and made free of licensing fees in April 2023 by Nubank. Source code is not public, so the license family is marked as source-available."
+    },
+    {
+      "id": "hypergraphdb",
+      "name": "HyperGraphDB",
+      "model": "specialized",
+      "status": "legacy",
+      "license": "LGPL-3.0",
+      "license_type": "copyleft",
+      "website": "https://www.hypergraphdb.org",
+      "query_interfaces": ["Java API"],
+      "vector_strategy": "none",
+      "vector_summary": "No vector search capability; HyperGraphDB is a general-purpose hypergraph store where edges can connect arbitrary numbers of nodes.",
+      "ha": "None",
+      "deployment": "Embedded Java library",
+      "best_fit": "Research or legacy systems that specifically need a true hypergraph model",
+      "profile": "databases/hypergraphdb/README.md",
+      "source_urls": [
+        "https://www.hypergraphdb.org",
+        "https://github.com/hypergraphdb/hypergraphdb"
+      ],
+      "notes": "Included as the reference hypergraph anchor. Activity has slowed significantly since 2017."
+    },
+    {
+      "id": "anzograph",
+      "name": "AnzoGraph DB",
+      "model": "rdf",
+      "status": "production",
+      "license": "Commercial",
+      "license_type": "commercial",
+      "website": "https://www.cambridgesemantics.com/anzograph/",
+      "query_interfaces": ["SPARQL 1.1", "openCypher"],
+      "vector_strategy": "unclear",
+      "vector_summary": "Public documentation covers large-scale SPARQL, reasoning, and analytics; no general-purpose vector index is currently documented.",
+      "ha": "Massively parallel in-memory cluster",
+      "deployment": "Self-hosted, Kubernetes, or Cambridge Semantics Anzo platform",
+      "best_fit": "Enterprise MPP SPARQL analytics and knowledge-graph workloads",
+      "profile": "databases/anzograph/README.md",
+      "source_urls": [
+        "https://docs.cambridgesemantics.com/anzograph/",
+        "https://www.cambridgesemantics.com/anzograph/"
+      ],
+      "notes": "AnzoGraph DB is the MPP SPARQL engine embedded inside the broader Anzo platform from Cambridge Semantics; also marketed as Altair Graph Studio after the Altair acquisition."
+    }
+  ]
+}

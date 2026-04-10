@@ -1,0 +1,39 @@
+{
+  "name": "graph-database-resource-catalog",
+  "version": "3.0.0",
+  "description": "A curated reference collection for RDF stores, property graph databases, multi-model engines, and vector-search strategies.",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "validate": "node scripts/validate-data.mjs",
+    "build": "npm run validate && vite build",
+    "preview": "vite preview",
+    "lint": "eslint src scripts --ext .js,.jsx,.mjs",
+    "check": "npm run validate && npm run lint && npm run build"
+  },
+  "keywords": [
+    "graph-database",
+    "property-graph",
+    "rdf",
+    "sparql",
+    "vector-search",
+    "knowledge-graph"
+  ],
+  "author": "Community contributors",
+  "license": "MIT",
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.2.0",
+    "eslint": "^8.54.0",
+    "eslint-plugin-react": "^7.33.0",
+    "eslint-plugin-react-hooks": "^4.6.2",
+    "vite": "^5.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  }
+}

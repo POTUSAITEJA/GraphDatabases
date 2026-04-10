@@ -1,0 +1,69 @@
+# Dependencies
+node_modules/
+pnpm-lock.yaml
+yarn.lock
+dist-ssr
+
+# Build output
+dist/
+build/
+*.tsbuildinfo
+
+# Environment
+.env
+.env.local
+.env.*.local
+.env.production.local
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# OS files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# IDE & Editor
+.vscode/
+.idea/
+*.suo
+*.sln
+*.csproj
+*.swp
+*.swo
+*~
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+.netrwhist
+
+# Testing
+coverage/
+.nyc_output/
+
+# Misc
+*.bak
+*.tmp
+.cache
+.parcel-cache
+.eslintcache
+.next
+.turbo
+
+# Mac files
+.AppleDouble
+.LSOverride
+
+# Windows files
+*.lnk
